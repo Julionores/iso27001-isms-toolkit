@@ -1,0 +1,102 @@
+# Conformance Pack AWS Config -- NovaDistrib SGSI (ISO/IEC 27001)
+#
+# Ce pack regroupe des règles AWS Config managées, correspondant chacune à un
+# contrôle vérifié également, à la demande, par ../aws_compliance_check.py.
+# Là où le script Python convient à une exécution ponctuelle (CI, tâche planifiée),
+# ce conformance pack fournit une évaluation CONTINUE de la même politique,
+# directement dans la console AWS Config (contrôle 8.9 -- gestion de la configuration).
+#
+# Déploiement :
+#   aws configservice put-conformance-pack \
+#     --conformance-pack-name isms-novadistrib \
+#     --template-body file://isms-conformance-pack.yaml
+#
+# Prérequis : AWS Config doit être activé sur le compte (recorder + delivery channel).
+
+Resources:
+  RootAccountMfaEnabled:
+    Type: AWS::Config::ConfigRule
+    Properties:
+      ConfigRuleName: isms-root-account-mfa-enabled
+      Description: >-
+        Contrôle 8.2/8.5 (risque R1) -- vérifie que le compte racine a
+        l'authentification multifacteur activée.
+      Source:
+        Owner: AWS
+        SourceIdentifier: ROOT_ACCOUNT_MFA_ENABLED
+
+  RootAccessKeyCheck:
+    Type: AWS::Config::ConfigRule
+    Properties:
+      ConfigRuleName: isms-root-access-key-check
+      Description: >-
+        Contrôle 8.2 -- vérifie qu'aucune clé d'accès programmatique n'existe
+        pour le compte racine.
+      Source:
+        Owner: AWS
+        SourceIdentifier: IAM_ROOT_ACCESS_KEY_CHECK
+
+  IamPasswordPolicy:
+    Type: AWS::Config::ConfigRule
+    Properties:
+      ConfigRuleName: isms-iam-password-policy
+      Description: >-
+        Contrôle 5.17 -- vérifie que la politique de mot de passe du compte
+        respecte les exigences minimales de la politique de mots de passe.
+      InputParameters:
+        RequireUppercaseCharacters: "true"
+        RequireLowercaseCharacters: "true"
+        RequireSymbols: "true"
+        RequireNumbers: "true"
+        MinimumPasswordLength: "14"
+        PasswordReusePrevention: "5"
+        MaxPasswordAge: "90"
+      Source:
+        Owner: AWS
+        SourceIdentifier: IAM_PASSWORD_POLICY
+
+  IamPolicyNoAdminAccess:
+    Type: AWS::Config::ConfigRule
+    Properties:
+      ConfigRuleName: isms-iam-policy-no-statements-with-admin-access
+      Description: >-
+        Contrôle 8.2 -- vérifie qu'aucune politique IAM gérée par le client
+        n'accorde Action:* et Resource:* simultanément.
+      Source:
+        Owner: AWS
+        SourceIdentifier: IAM_POLICY_NO_STATEMENTS_WITH_ADMIN_ACCESS
+
+  S3AccountLevelPublicAccessBlocks:
+    Type: AWS::Config::ConfigRule
+    Properties:
+      ConfigRuleName: isms-s3-account-level-public-access-blocks
+      Description: >-
+        Contrôle 8.12 (risque R2) -- vérifie que le blocage d'accès public S3
+        est actif au niveau du compte entier.
+      Source:
+        Owner: AWS
+        SourceIdentifier: S3_ACCOUNT_LEVEL_PUBLIC_ACCESS_BLOCKS
+
+  S3BucketServerSideEncryptionEnabled:
+    Type: AWS::Config::ConfigRule
+    Properties:
+      ConfigRuleName: isms-s3-bucket-server-side-encryption-enabled
+      Description: >-
+        Contrôle 8.24 -- vérifie que chaque compartiment S3 a un chiffrement
+        par défaut configuré.
+      Source:
+        Owner: AWS
+        SourceIdentifier: S3_BUCKET_SERVER_SIDE_ENCRYPTION_ENABLED
+
+  CloudTrailEnabled:
+    Type: AWS::Config::ConfigRule
+    Properties:
+      ConfigRuleName: isms-cloud-trail-enabled
+      Description: >-
+        Contrôle 8.15 (risque R5) -- vérifie qu'au moins un trail CloudTrail
+        multi-régions est actif et journalise.
+      InputParameters:
+        IsMultiRegionTrail: "true"
+      Source:
+        Owner: AWS
+        SourceIdentifier: CLOUD_TRAIL_ENABLED

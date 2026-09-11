@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installe les dépendances de développement
+        run: pip install -r requirements-dev.txt yamllint
+
+      - name: Vérifie le formatage (black)
+        run: black --check controls tests
+
+      - name: Analyse statique (flake8)
+        run: flake8 --max-line-length=100 controls tests
+
+      - name: Valide la syntaxe du conformance pack AWS Config
+        run: yamllint -d relaxed controls/conformance-pack/isms-conformance-pack.yaml
+
+  test:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installe les dépendances de développement
+        run: pip install -r requirements-dev.txt
+
+      - name: Exécute les tests (contrôles simulés avec moto, sans compte AWS réel)
+        run: pytest -v

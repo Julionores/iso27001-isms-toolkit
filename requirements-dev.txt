@@ -1,0 +1,5 @@
+-r controls/requirements.txt
+pytest>=8.0,<9.0
+moto[iam,s3,s3control,cloudtrail,sts]>=5.0,<6.0
+flake8>=7.0,<8.0
+black>=24.0,<25.0
