@@ -23,9 +23,10 @@ réelle de cette politique contre un compte AWS.
 > [`aws-vpc-connectivity-patterns`](https://github.com/Julionores/aws-vpc-connectivity-patterns).
 > Côté Machine Learning, voir aussi [`gradientforge`](https://github.com/Julionores/gradientforge),
 > [`radar-risque-impaye`](https://github.com/Julionores/radar-risque-impaye),
-> [`collecte-agricole-planner`](https://github.com/Julionores/collecte-agricole-planner) et
-> [`ticket-tide`](https://github.com/Julionores/ticket-tide), une prévision de série
-> temporelle (famille ARMA).
+> [`collecte-agricole-planner`](https://github.com/Julionores/collecte-agricole-planner),
+> [`ticket-tide`](https://github.com/Julionores/ticket-tide) et
+> [`inspectline`](https://github.com/Julionores/inspectline), un détecteur d'objets
+> (Faster R-CNN) pour le contrôle qualité industriel.
 
 ## Pourquoi ce projet
 
