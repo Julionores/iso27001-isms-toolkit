@@ -21,6 +21,8 @@ réelle de cette politique contre un compte AWS.
 > [`s3-cross-region-replication`](https://github.com/Julionores/s3-cross-region-replication),
 > [`aws-alb-deployment-patterns`](https://github.com/Julionores/aws-alb-deployment-patterns) et
 > [`aws-vpc-connectivity-patterns`](https://github.com/Julionores/aws-vpc-connectivity-patterns).
+> Côté Machine Learning, voir aussi [`gradientforge`](https://github.com/Julionores/gradientforge),
+> un moteur de régression et classification codé en NumPy pur.
 
 ## Pourquoi ce projet
 
