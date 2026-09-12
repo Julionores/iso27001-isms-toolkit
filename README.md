@@ -15,7 +15,12 @@ réelle de cette politique contre un compte AWS.
 > [`securebank-api`](https://github.com/Julionores/securebank-api) et
 > [`postgresql-ha-repmgr`](https://github.com/Julionores/postgresql-ha-repmgr). Ce projet
 > complète mon [cours Cybersécurité](https://blog.jtmcloud.com/securite/), qui couvre notamment
-> le panorama des certifications dont ISO/IEC 27001.
+> le panorama des certifications dont ISO/IEC 27001. Côté Cloud AWS, voir aussi
+> [`dynamodb-streams-cdc-pipeline`](https://github.com/Julionores/dynamodb-streams-cdc-pipeline),
+> [`aws-troubleshooting-challenge`](https://github.com/Julionores/aws-troubleshooting-challenge),
+> [`s3-cross-region-replication`](https://github.com/Julionores/s3-cross-region-replication),
+> [`aws-alb-deployment-patterns`](https://github.com/Julionores/aws-alb-deployment-patterns) et
+> [`aws-vpc-connectivity-patterns`](https://github.com/Julionores/aws-vpc-connectivity-patterns).
 
 ## Pourquoi ce projet
 
