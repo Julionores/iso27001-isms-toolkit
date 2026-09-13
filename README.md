@@ -12,8 +12,9 @@ réelle de cette politique contre un compte AWS.
 > [LinkedIn](https://www.linkedin.com/in/junior-tsafack-megnekeu-b673151b9)) — pièce d'un
 > portfolio technique orienté DevSecOps / gouvernance de la sécurité. Voir aussi
 > [`devsecops-pipeline-reference`](https://github.com/Julionores/devsecops-pipeline-reference),
-> [`securebank-api`](https://github.com/Julionores/securebank-api) et
-> [`postgresql-ha-repmgr`](https://github.com/Julionores/postgresql-ha-repmgr). Ce projet
+> [`securebank-api`](https://github.com/Julionores/securebank-api),
+> [`postgresql-ha-repmgr`](https://github.com/Julionores/postgresql-ha-repmgr) et
+> [`homelab-attaque-detection`](https://github.com/Julionores/homelab-attaque-detection). Ce projet
 > complète mon [cours Cybersécurité](https://blog.jtmcloud.com/securite/), qui couvre notamment
 > le panorama des certifications dont ISO/IEC 27001. Côté Cloud AWS, voir aussi
 > [`dynamodb-streams-cdc-pipeline`](https://github.com/Julionores/dynamodb-streams-cdc-pipeline),
